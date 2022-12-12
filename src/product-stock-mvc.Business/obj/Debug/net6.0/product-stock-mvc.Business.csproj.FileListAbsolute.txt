@@ -1,0 +1,12 @@
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\bin\Debug\net6.0\product-stock-mvc.Business.deps.json
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\bin\Debug\net6.0\product-stock-mvc.Business.dll
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\bin\Debug\net6.0\product-stock-mvc.Business.pdb
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\product-stock-mvc.Business.csproj.AssemblyReference.cache
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\product-stock-mvc.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\product-stock-mvc.Business.AssemblyInfoInputs.cache
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\product-stock-mvc.Business.AssemblyInfo.cs
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\product-stock-mvc.Business.csproj.CoreCompileInputs.cache
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\product-stock-mvc.Business.dll
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\refint\product-stock-mvc.Business.dll
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\product-stock-mvc.Business.pdb
+C:\Dev\product-stock-mvc\src\product-stock-mvc.Business\obj\Debug\net6.0\ref\product-stock-mvc.Business.dll

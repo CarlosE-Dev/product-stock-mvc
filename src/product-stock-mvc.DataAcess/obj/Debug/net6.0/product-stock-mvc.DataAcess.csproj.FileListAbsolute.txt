@@ -1,0 +1,15 @@
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\bin\Debug\net6.0\product-stock-mvc.DataAcess.deps.json
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\bin\Debug\net6.0\product-stock-mvc.DataAcess.dll
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\bin\Debug\net6.0\product-stock-mvc.DataAcess.pdb
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\bin\Debug\net6.0\product-stock-mvc.Business.dll
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\bin\Debug\net6.0\product-stock-mvc.Business.pdb
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.csproj.AssemblyReference.cache
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.AssemblyInfoInputs.cache
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.AssemblyInfo.cs
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.csproj.CoreCompileInputs.cache
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.csproj.CopyComplete
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.dll
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\refint\product-stock-mvc.DataAcess.dll
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\product-stock-mvc.DataAcess.pdb
+C:\Dev\product-stock-mvc\src\product-stock-mvc.DataAcess\obj\Debug\net6.0\ref\product-stock-mvc.DataAcess.dll
