@@ -40,6 +40,7 @@ namespace product_stock_mvc.Web.DTOs
 
 
         [Required(ErrorMessage = "The field {0} cannot be empty")]
+        [DisplayName("In stock")]
         public long QuantityInStock { get; set; }
 
 

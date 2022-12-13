@@ -51,7 +51,7 @@ namespace product_stock_mvc.Web.Controllers
 
             await _productRepository.CreateAsync(_mapper.Map<Product>(productDTO));
 
-            return View(productDTO);
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Edit(Guid id)
