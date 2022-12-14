@@ -8,7 +8,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form enctype="multipart/form-data" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -19,7 +19,7 @@
             <br/>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <textarea cols="40" rows="5" asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <br/>
@@ -47,9 +47,18 @@
                 </label>
             </div>
             <br/>
+
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
+                <label>Current Image</label><br/>
+                <img src="~/img/@Model.Image" alt="@Model.Image" style="width:100px; height:100px;"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ImageUpload" asp-for="ImageUpload" />
+                    <label data-browse="Search" style="width: 400px" class="custom-file-label" for="ImageUpload"></label>
+                    <label style="display: none" id="img_name"></label>
+                </div>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <br/>
@@ -63,4 +72,10 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $("#ImageUpload").change(function() {
+            $("#img_name").text(this.files[0].name);
+            $("#img_name")[0].style.display = 'block';
+        });
+    </script>
 }

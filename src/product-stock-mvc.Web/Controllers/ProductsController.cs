@@ -49,6 +49,14 @@ namespace product_stock_mvc.Web.Controllers
             if (!ModelState.IsValid)
                 return View(productDTO);
 
+            var imgPrefix = Guid.NewGuid() + "_";
+
+            if (!await UploadFile(productDTO.ImageUpload, imgPrefix)) {
+                return View(productDTO);
+            }
+
+            productDTO.Image = imgPrefix + productDTO.ImageUpload.FileName;
+
             await _productRepository.CreateAsync(_mapper.Map<Product>(productDTO));
 
             return RedirectToAction("Index");
@@ -75,10 +83,27 @@ namespace product_stock_mvc.Web.Controllers
             if (id != productDTO.Id)
                 return NotFound();
 
-            productDTO = await FillProvidersList(productDTO);
+            var updateProduct = await GetProductProvider(id);
+            var updateProductProviders = FillProvidersList(updateProduct);
 
             if (!ModelState.IsValid)
-                return View(productDTO);
+                return View(updateProductProviders);
+
+            if(productDTO.ImageUpload != null)
+            {
+                var imgPrefix = Guid.NewGuid() + "_";
+
+                if (!await UploadFile(productDTO.ImageUpload, imgPrefix))
+                {
+                    return View(productDTO);
+                }
+
+                productDTO.Image = imgPrefix + productDTO.ImageUpload.FileName;
+            }
+            else
+            {
+                productDTO.Image = updateProduct.Image;
+            }
 
             await _productRepository.UpdateAsync(_mapper.Map<Product>(productDTO));
 
@@ -123,6 +148,26 @@ namespace product_stock_mvc.Web.Controllers
         {
             productDTO.Providers = _mapper.Map<IEnumerable<ProviderDTO>>(await _providerRepository.GetAllAsync());
             return productDTO;
+        }
+
+        private async Task<bool> UploadFile(IFormFile file, string prefix)
+        {
+            if (file.Length <= 0) return false;
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", prefix + file.FileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                ModelState.AddModelError(string.Empty, "Error! Duplicated file");
+                return false;
+            }
+
+            using(var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return true;
         }
     }
 }

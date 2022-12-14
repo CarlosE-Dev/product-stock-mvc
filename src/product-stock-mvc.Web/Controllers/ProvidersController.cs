@@ -71,7 +71,10 @@ namespace product_stock_mvc.Web.Controllers
                 return NotFound();
 
             if (!ModelState.IsValid)
-                return View(providerDTO);
+            {
+                var updateProvider = await _repository.GetProviderProductsAsync(id);
+                return View(updateProvider);
+            }
 
             await _repository.UpdateAsync(_mapper.Map<Provider>(providerDTO));
 

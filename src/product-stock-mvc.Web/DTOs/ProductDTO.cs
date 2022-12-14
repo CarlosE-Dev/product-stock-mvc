@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using product_stock_mvc.Web.Extensions;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,7 +28,7 @@ namespace product_stock_mvc.Web.DTOs
         [StringLength(500, ErrorMessage = "The length of the field {0} must be {2} to {1} characters", MinimumLength = 20)]
         public string Description { get; set; }
 
-
+        [DisplayName("Image")]
         public IFormFile ImageUpload { get; set; }
 
 
@@ -36,6 +36,7 @@ namespace product_stock_mvc.Web.DTOs
 
 
         [Required(ErrorMessage = "The field {0} cannot be empty")]
+        [Currency]
         public decimal Price { get; set; }
 
 

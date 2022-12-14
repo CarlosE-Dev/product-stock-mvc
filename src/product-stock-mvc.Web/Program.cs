@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using product_stock_mvc.Business.Interfaces;
 using product_stock_mvc.DataAcess.Context;
 using product_stock_mvc.DataAcess.Repository;
 using product_stock_mvc.Web.Data;
+using product_stock_mvc.Web.Extensions;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,9 +27,10 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<ProductStockDbContext>();
+builder.Services.AddTransient<ProductStockDbContext>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+builder.Services.AddSingleton<IValidationAttributeAdapterProvider, CurrencyValidationAttributeAdapterProvider>();
 
 var app = builder.Build();
 
@@ -47,7 +52,18 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
+
+var defaultCulture = new CultureInfo("en-US");
+var localizationOpt = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(defaultCulture),
+    SupportedCultures = new List<CultureInfo> { defaultCulture },
+    SupportedUICultures = new List<CultureInfo> { defaultCulture }
+};
+app.UseRequestLocalization(localizationOpt);
+
 
 app.MapControllerRoute(
     name: "default",
