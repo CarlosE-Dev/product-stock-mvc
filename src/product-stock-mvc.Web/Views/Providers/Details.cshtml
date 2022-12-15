@@ -1,4 +1,5 @@
-﻿@model product_stock_mvc.Web.DTOs.ProviderDTO
+﻿@using product_stock_mvc.Web.Extensions
+@model product_stock_mvc.Web.DTOs.ProviderDTO
 
 @{
     ViewData["Title"] = "Provider Details";
@@ -21,7 +22,7 @@
     </tr>
     <tr>
         <td>@Html.DisplayNameFor(model => model.Document):</td>
-        <td>@Html.DisplayFor(model => model.Document)</td>
+        <td>@this.FormatDocNumber(Model.ProviderType, Model.Document)</td>
     </tr>
     <tr>
         <td>@Html.DisplayNameFor(model => model.ProviderType):</td>
@@ -36,5 +37,7 @@
 </div>
 <div>
     <a class="btn btn-primary text-white" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-    <a class="btn btn-warning text-white" asp-action="Index">Back</a>
+    <a class="btn btn-warning text-white" href="javascript:window.history.back();">Back</a>
 </div>
+<br/>
+<partial name="_ProviderProductsDetails" />

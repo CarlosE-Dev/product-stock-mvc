@@ -1,0 +1,45 @@
+﻿@model product_stock_mvc.Web.DTOs.ProviderDTO
+<div style="padding-top: 50px">
+    @if (Model != null && Model.Products.Count() > 0)
+    {
+        <div>
+            <h3>Provided by @Model.Name</h3>
+        </div>
+        <br/>
+        <div class="col-lg-4 col-sm-4">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                </thead>
+                    @foreach (ProductDTO p in Model.Products)
+                    {
+                    <tr>
+                        <td>
+                            @p.Name
+                        </td>
+                        <td>
+                            @p.Price
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" asp-controller="Products" asp-action="Details" asp-route-id="@p.Id"><spam class="fa fa-search"></spam></a>
+                            <a class="btn btn-primary" asp-controller="Products" asp-action="Edit" asp-route-id="@p.Id"><spam class="fa fa-pencil"></spam></a>
+                        </td>
+                    </tr>
+                    }
+            </table>
+        </div>
+    }
+</div>

@@ -16,6 +16,7 @@ namespace product_stock_mvc.Web.DTOs
 
 
         [ScaffoldColumn(false)]
+        [DisplayName("Created on")]
         public DateTime CreatedOn { get; set; }
 
 
