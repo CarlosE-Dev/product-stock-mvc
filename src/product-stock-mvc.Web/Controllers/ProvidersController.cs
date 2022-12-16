@@ -6,6 +6,7 @@ using product_stock_mvc.Business.Models;
 
 namespace product_stock_mvc.Web.Controllers
 {
+    [Route("provider")]
     public class ProvidersController : BaseController
     {
         private readonly IProviderRepository _repository;
@@ -17,11 +18,13 @@ namespace product_stock_mvc.Web.Controllers
             _mapper = mapper;
         }
 
+        [Route("list")]
         public async Task<IActionResult> Index()
         {
               return View(_mapper.Map<IEnumerable<ProviderDTO>>(await _repository.GetAllAsync()));
         }
 
+        [Route("details")]
         public async Task<IActionResult> Details(Guid id)
         {
 
@@ -35,11 +38,13 @@ namespace product_stock_mvc.Web.Controllers
             return View(providerDTO);
         }
 
+        [Route("new")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Route("new")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProviderDTO providerDTO)
@@ -53,6 +58,7 @@ namespace product_stock_mvc.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("update/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var providerDTO = _mapper.Map<ProviderDTO>(await _repository.GetProviderProductsAsync(id));
@@ -63,6 +69,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(providerDTO);
         }
 
+        [Route("update/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProviderDTO providerDTO)
@@ -81,6 +88,7 @@ namespace product_stock_mvc.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("remove/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var providerDTO = _mapper.Map<ProviderDTO>(await _repository.GetByIdAsync(id));
@@ -91,6 +99,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(providerDTO);
         }
 
+        [Route("remove/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

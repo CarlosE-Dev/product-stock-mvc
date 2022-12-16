@@ -6,6 +6,7 @@ using product_stock_mvc.Business.Models;
 
 namespace product_stock_mvc.Web.Controllers
 {
+    [Route("product")]
     public class ProductsController : BaseController
     {
         private readonly IProductRepository _productRepository;
@@ -18,11 +19,14 @@ namespace product_stock_mvc.Web.Controllers
             _providerRepository = providerRepository;
             _mapper = mapper;
         }
+
+        [Route("list")]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProductDTO>>(await _productRepository.GetProductsProvidersAsync()));
         }
 
+        [Route("details")]
         public async Task<IActionResult> Details(Guid id)
         {
             var productDTO = await GetProductProvider(id);
@@ -33,6 +37,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [Route("new")]
         public async Task<IActionResult> Create()
         {
             var productDTO = await FillProvidersList(new ProductDTO());
@@ -40,6 +45,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [Route("new")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductDTO productDTO)
@@ -62,6 +68,7 @@ namespace product_stock_mvc.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("update/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var productDTO = await GetProductProvider(id);
@@ -76,6 +83,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [Route("update/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProductDTO productDTO)
@@ -109,6 +117,8 @@ namespace product_stock_mvc.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Route("remove/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var productDTO = await GetProductProvider(id);
@@ -121,6 +131,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [Route("remove/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

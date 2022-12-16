@@ -5,7 +5,7 @@ namespace product_stock_mvc.DataAcess.Context
 {
     public class ProductStockDbContext : DbContext
     {
-        public ProductStockDbContext(DbContextOptions options) : base(options){ }
+        public ProductStockDbContext(DbContextOptions<ProductStockDbContext> options) : base(options){ }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

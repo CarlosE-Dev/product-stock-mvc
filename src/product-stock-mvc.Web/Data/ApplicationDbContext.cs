@@ -10,6 +10,5 @@ namespace product_stock_mvc.Web.Data
             : base(options)
         {
         }
-        public DbSet<product_stock_mvc.Web.DTOs.ProductDTO> ProductDTO { get; set; }
     }
 }

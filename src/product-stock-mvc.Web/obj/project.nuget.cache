@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Rbi1PdrtbgPf/X1nC/iu8VZM/eu5ZzAn8oJLN28hPZV7E0bGy5MNDBWbmBv5WkzxAdAs7RFhZ9UGM3Y/3I3TpQ==",
+  "dgSpecHash": "uF1o5wJSTbWxEtfvpm32z0aoN9RbTLTYXYPgxKdCnLgviehughevTrkbjNK9ho+zh8EqFMEhiG5VQFSbiF7kIA==",
   "success": true,
   "projectFilePath": "C:\\Dev\\product-stock-mvc\\src\\product-stock-mvc.Web\\product-stock-mvc.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Carlos\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\Carlos\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Carlos\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

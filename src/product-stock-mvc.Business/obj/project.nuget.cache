@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oyhr6OBGxkNEsVTbDw9saW7XmdJU30s13W9v3rqcDJWSpniJGxwhsbfGEHA9mFokybozKyE4AVMe0TD+8SWGhQ==",
+  "dgSpecHash": "3rVndH/Lomtz/q00CH12IA9dnHfYU72Kld4iX6LyTZcuMh2r1tahq1WByM+N4LevK/rCQ59CTraKRjONXG5RRA==",
   "success": true,
   "projectFilePath": "C:\\Dev\\product-stock-mvc\\src\\product-stock-mvc.Business\\product-stock-mvc.Business.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Carlos\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512"
+  ],
   "logs": []
 }
