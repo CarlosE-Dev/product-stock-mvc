@@ -9,26 +9,32 @@ namespace product_stock_mvc.Web.Controllers
     [Route("provider")]
     public class ProvidersController : BaseController
     {
-        private readonly IProviderRepository _repository;
+        private readonly IProviderRepository _providerRepository;
+        private readonly IProviderService _providerService;
         private readonly IMapper _mapper;
 
-        public ProvidersController(IProviderRepository repository, IMapper mapper)
+        public ProvidersController( IProviderRepository providerRepository, 
+                                    IMapper mapper, 
+                                    IProviderService providerService,
+                                    INotifier notifier
+                                    ) : base(notifier)
         {
-            _repository = repository;
+            _providerRepository = providerRepository;
             _mapper = mapper;
+            _providerService = providerService;
         }
 
         [Route("list")]
         public async Task<IActionResult> Index()
         {
-              return View(_mapper.Map<IEnumerable<ProviderDTO>>(await _repository.GetAllAsync()));
+              return View(_mapper.Map<IEnumerable<ProviderDTO>>(await _providerRepository.GetAllAsync()));
         }
 
         [Route("details")]
         public async Task<IActionResult> Details(Guid id)
         {
 
-            var providerDTO = _mapper.Map<ProviderDTO>(await _repository.GetProviderProductsAsync(id));
+            var providerDTO = _mapper.Map<ProviderDTO>(await _providerRepository.GetProviderProductsAsync(id));
 
             if (providerDTO == null)
             {
@@ -53,7 +59,11 @@ namespace product_stock_mvc.Web.Controllers
                 return View(providerDTO);
 
             var provider = _mapper.Map<Provider>(providerDTO);
-            await _repository.CreateAsync(provider);
+            await _providerService.CreateProvider(provider);
+
+            if (!ValidOperation()) return View(providerDTO);
+
+            TempData["Success"] = "Provider successfully created";
 
             return RedirectToAction("Index");
         }
@@ -61,7 +71,7 @@ namespace product_stock_mvc.Web.Controllers
         [Route("update/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var providerDTO = _mapper.Map<ProviderDTO>(await _repository.GetProviderProductsAsync(id));
+            var providerDTO = _mapper.Map<ProviderDTO>(await _providerRepository.GetProviderProductsAsync(id));
 
             if (providerDTO == null)
                 return NotFound();
@@ -79,11 +89,15 @@ namespace product_stock_mvc.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                var updateProvider = await _repository.GetProviderProductsAsync(id);
+                var updateProvider = await _providerRepository.GetProviderProductsAsync(id);
                 return View(updateProvider);
             }
 
-            await _repository.UpdateAsync(_mapper.Map<Provider>(providerDTO));
+            await _providerService.UpdateProvider(_mapper.Map<Provider>(providerDTO));
+
+            if (!ValidOperation()) return View(_mapper.Map<ProviderDTO>(await _providerRepository.GetProviderProductsAsync(id)));
+
+            TempData["Success"] = "Provider successfully updated";
 
             return RedirectToAction("Index");
         }
@@ -91,7 +105,7 @@ namespace product_stock_mvc.Web.Controllers
         [Route("remove/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var providerDTO = _mapper.Map<ProviderDTO>(await _repository.GetByIdAsync(id));
+            var providerDTO = _mapper.Map<ProviderDTO>(await _providerRepository.GetByIdAsync(id));
 
             if (providerDTO == null)
                 return NotFound();
@@ -104,12 +118,16 @@ namespace product_stock_mvc.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var provider = await _repository.GetByIdAsync(id);
+            var provider = await _providerRepository.GetByIdAsync(id);
 
             if (provider == null)
                 return NotFound();
 
-            await _repository.DeleteAsync(id);
+            await _providerService.DeleteProvider(id);
+
+            if (!ValidOperation()) return View(_mapper.Map<ProviderDTO>(provider));
+
+            TempData["Success"] = "Provider successfully removed";
 
             return RedirectToAction("Index");
         }

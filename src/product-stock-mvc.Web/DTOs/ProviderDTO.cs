@@ -15,7 +15,7 @@ namespace product_stock_mvc.Web.DTOs
 
 
         [Required(ErrorMessage = "The field {0} cannot be empty")]
-        [StringLength(11, ErrorMessage = "The length of the field {0} must be {1} characters", MinimumLength = 11)]
+        [StringLength(14, ErrorMessage = "The length of the field {0} must be {1} characters", MinimumLength = 14)]
         public string Document { get; set; }
 
 

@@ -11,13 +11,20 @@ namespace product_stock_mvc.Web.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly IProviderRepository _providerRepository;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository repository, IProviderRepository providerRepository, IMapper mapper)
+        public ProductsController(IProductRepository repository,
+                                  IProviderRepository providerRepository,
+                                  IMapper mapper,
+                                  IProductService productService,
+                                  INotifier notifier
+                                  ) : base(notifier)
         {
             _productRepository = repository;
             _providerRepository = providerRepository;
             _mapper = mapper;
+            _productService = productService;
         }
 
         [Route("list")]
@@ -63,7 +70,11 @@ namespace product_stock_mvc.Web.Controllers
 
             productDTO.Image = imgPrefix + productDTO.ImageUpload.FileName;
 
-            await _productRepository.CreateAsync(_mapper.Map<Product>(productDTO));
+            await _productService.CreateProduct(_mapper.Map<Product>(productDTO));
+
+            if (!ValidOperation()) return View(productDTO);
+
+            TempData["Success"] = "Product successfully created";
 
             return RedirectToAction("Index");
         }
@@ -113,7 +124,11 @@ namespace product_stock_mvc.Web.Controllers
                 productDTO.Image = updateProduct.Image;
             }
 
-            await _productRepository.UpdateAsync(_mapper.Map<Product>(productDTO));
+            await _productService.UpdateProduct(_mapper.Map<Product>(productDTO));
+
+            if (!ValidOperation()) return View(productDTO);
+
+            TempData["Success"] = "Product successfully updated";
 
             return RedirectToAction("Index");
         }
@@ -143,7 +158,11 @@ namespace product_stock_mvc.Web.Controllers
                 return NotFound();
             }
 
-            await _productRepository.DeleteAsync(id);
+            await _productService.DeleteProduct(id);
+
+            if (!ValidOperation()) return View(productDTO);
+
+            TempData["Success"] = "Product successfully removed";
 
             return RedirectToAction("Index");
         }
