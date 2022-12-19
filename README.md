@@ -1,4 +1,4 @@
-# product-stock-mvc
+# Product Stock - MVC
 
 This project was built to practice recent knowledge I acquired about ASP .NET MVC Core,
 especially in parts related to views and error handling.
