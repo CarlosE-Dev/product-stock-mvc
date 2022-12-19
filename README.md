@@ -14,7 +14,8 @@ In addition to being able to edit, delete and create a new supplier.
 We also have a list with only the products available in our stock, being able to edit, delete or create a new one,
 in the product details section, in addition to information about the product, you are also able to see which provider it was provided by and carry out
 the necessary updates in your stock, having total control of your business, in a simple and easy way.
-## 
+
+<br />
 
 # Some points to be highlighted
 
