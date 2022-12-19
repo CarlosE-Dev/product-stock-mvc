@@ -35,7 +35,7 @@
                         </td>
                         <td>
                             <a class="btn btn-secondary" asp-controller="Products" asp-action="Details" asp-route-id="@p.Id"><spam class="fa fa-search"></spam></a>
-                            <a class="btn btn-primary" asp-controller="Products" asp-action="Edit" asp-route-id="@p.Id"><spam class="fa fa-pencil"></spam></a>
+                            <a supress-by-claim-name="Product"  supress-by-claim-value="Update" class="btn btn-primary" asp-controller="Products" asp-action="Edit" asp-route-id="@p.Id"><spam class="fa fa-pencil"></spam></a>
                         </td>
                     </tr>
                     }

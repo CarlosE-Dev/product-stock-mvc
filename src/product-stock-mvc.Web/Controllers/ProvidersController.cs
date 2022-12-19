@@ -3,9 +3,12 @@ using product_stock_mvc.Web.DTOs;
 using product_stock_mvc.Business.Interfaces;
 using AutoMapper;
 using product_stock_mvc.Business.Models;
+using Microsoft.AspNetCore.Authorization;
+using product_stock_mvc.Web.Extensions;
 
 namespace product_stock_mvc.Web.Controllers
 {
+    [Authorize]
     [Route("provider")]
     public class ProvidersController : BaseController
     {
@@ -24,12 +27,14 @@ namespace product_stock_mvc.Web.Controllers
             _providerService = providerService;
         }
 
+        [AllowAnonymous]
         [Route("list")]
         public async Task<IActionResult> Index()
         {
               return View(_mapper.Map<IEnumerable<ProviderDTO>>(await _providerRepository.GetAllAsync()));
         }
 
+        [AllowAnonymous]
         [Route("details")]
         public async Task<IActionResult> Details(Guid id)
         {
@@ -44,12 +49,14 @@ namespace product_stock_mvc.Web.Controllers
             return View(providerDTO);
         }
 
+        [ClaimsAuthorize("Provider", "Create")]
         [Route("new")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [ClaimsAuthorize("Provider", "Create")]
         [Route("new")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -68,6 +75,7 @@ namespace product_stock_mvc.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Provider", "Update")]
         [Route("update/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -79,6 +87,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(providerDTO);
         }
 
+        [ClaimsAuthorize("Provider", "Update")]
         [Route("update/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -102,6 +111,7 @@ namespace product_stock_mvc.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Provider", "Delete")]
         [Route("remove/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -113,6 +123,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(providerDTO);
         }
 
+        [ClaimsAuthorize("Provider", "Delete")]
         [Route("remove/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

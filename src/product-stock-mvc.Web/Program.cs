@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using product_stock_mvc.DataAcess.Context;
 using product_stock_mvc.Web.Configurations;
@@ -19,7 +20,10 @@ builder.Services.AddIdentityConfiguration(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(Program));
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 
 builder.Services.ResolveDependencies();
 
@@ -27,11 +31,13 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/home/error");
+    app.UseStatusCodePagesWithRedirects("/error/{0}");
     app.UseHsts();
 }
 

@@ -23,10 +23,35 @@ namespace product_stock_mvc.Web.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [Route("error/{id:length(3,3)}")]
+        public IActionResult Errors(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var modelErro = new ErrorViewModel();
+
+            if (id == 500)
+            {
+                modelErro.Message = "Please, try again later or contact our support.";
+                modelErro.Title = "An error ocurred! <br />";
+                modelErro.ErrorCode = id;
+            }
+            else if (id == 404)
+            {
+                modelErro.Message = "Contact our support for more information.";
+                modelErro.Title = "Oops! Page not found. <br />";
+                modelErro.ErrorCode = id;
+            }
+            else if (id == 403)
+            {
+                modelErro.Message = "You do not have permission to access this content.";
+                modelErro.Title = "Access denied. <br />";
+                modelErro.ErrorCode = id;
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+
+            return View("Error", modelErro);
         }
     }
 }

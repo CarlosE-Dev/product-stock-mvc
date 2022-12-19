@@ -3,9 +3,12 @@ using product_stock_mvc.Web.DTOs;
 using product_stock_mvc.Business.Interfaces;
 using AutoMapper;
 using product_stock_mvc.Business.Models;
+using Microsoft.AspNetCore.Authorization;
+using product_stock_mvc.Web.Extensions;
 
 namespace product_stock_mvc.Web.Controllers
 {
+    [Authorize]
     [Route("product")]
     public class ProductsController : BaseController
     {
@@ -27,12 +30,14 @@ namespace product_stock_mvc.Web.Controllers
             _productService = productService;
         }
 
+        [AllowAnonymous]
         [Route("list")]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProductDTO>>(await _productRepository.GetProductsProvidersAsync()));
         }
 
+        [AllowAnonymous]
         [Route("details")]
         public async Task<IActionResult> Details(Guid id)
         {
@@ -44,6 +49,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [ClaimsAuthorize("Product","Create")]
         [Route("new")]
         public async Task<IActionResult> Create()
         {
@@ -52,6 +58,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [ClaimsAuthorize("Product", "Create")]
         [Route("new")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -79,6 +86,7 @@ namespace product_stock_mvc.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Product", "Update")]
         [Route("update/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -94,6 +102,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [ClaimsAuthorize("Product", "Update")]
         [Route("update/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -133,6 +142,7 @@ namespace product_stock_mvc.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Product", "Delete")]
         [Route("remove/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -146,6 +156,7 @@ namespace product_stock_mvc.Web.Controllers
             return View(productDTO);
         }
 
+        [ClaimsAuthorize("Product", "Delete")]
         [Route("remove/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

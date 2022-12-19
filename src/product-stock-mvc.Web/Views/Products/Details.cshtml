@@ -47,6 +47,6 @@
 </div>
 <br/>
 <div>
-    <a class="btn btn-primary text-white" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    <a disable-by-claim-name="Product"  disable-by-claim-value="Update" class="btn btn-primary text-white" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
     <a class="btn btn-warning text-white" href="javascript:window.history.back();">Back</a>
 </div>
