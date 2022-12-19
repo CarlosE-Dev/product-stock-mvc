@@ -16,7 +16,7 @@ in the product details section, in addition to information about the product, yo
 the necessary updates in your stock, having total control of your business, in a simple and easy way.
 ## 
 
-<strong>Some points to be highlighted</strong>
+# Some points to be highlighted
 
 :heavy_check_mark:  This application was created with a 3-tier architecture: Web, Business and Data Access.  <br/>
 :heavy_check_mark:  Good development practices were prioritized in this project, following S.O.L.I.D. Principles and Clean Code.  <br/>
